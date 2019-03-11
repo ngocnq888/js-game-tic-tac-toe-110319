@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Game Tic Tac Toe </title>
+</head>
+<body>
+<h4>Game Tic Tac Toe </h4>
+<p id="inra"></p>
+<button onclick="danhCo()">Danh Tiep</button>
+<button  onclick="khoiTao()">RESET</button>
+<script>
+
+    var mang ;
+    var space;
+    var invao = document.getElementById("inra");
+    khoiTao();
+
+function khoiTao(){
+    mang =[];
+    space="";
+    for(var i=0; i<3; i++){
+        mang[i] = ['+','+','+'];
+    }
+    for (let i = 0; i<3;i++)
+    {
+        space +='<br/>';
+        for (let j = 0; j<3; j++)
+        {
+            space +=mang[i][j] +"&nbsp;&nbsp;";
+        }
+    }
+    invao.innerHTML = space;
+
+}
+    //Ham check Win
+function checkWin(){
+        let a1 = ((mang[0][0] === mang[1][1])&&(mang[0][0] === mang[2][2])) ;
+        let b2 = ((mang[2][0] === mang[1][1])&&(mang[2][0] === mang[0][2])) ;
+        let c3 = ((mang[0][1] === mang[1][1])&&(mang[0][1] === mang[2][1])) ;
+        let d4 = ((mang[1][0] === mang[1][1])&&(mang[1][0] === mang[1][2])) ;
+        let e5 = ((mang[0][0] === mang[1][0])&&(mang[0][0] === mang[2][0]));
+        let f6 = ((mang[0][2] === mang[1][2])&&(mang[0][2] === mang[2][2]));
+        let g7 = ((mang[2][0] === mang[2][1])&&(mang[2][0] === mang[2][2])) ;
+        let h8 = ((mang[0][0] === mang[0][1])&&(mang[0][0] === mang[0][2]));
+        if(mang[0][0] !== '+'){
+            if (a1){
+
+                alert('X thang  ! ');
+            }
+            else if (e5){
+                alert('X thang  ! ');
+            }
+            else if(h8){
+                alert('X thang !');
+            }
+
+        }
+        else if (mang[2][0] == 'X'){
+            if (b2){
+                alert('X thang  !');
+            }
+            else if(g7){
+                alert('X thang  !');
+            }
+        }
+        else if(mang[0][1]== 'X'){
+            if(c3){
+                alert('X thang  !');
+            }
+        }
+        else if(mang[1][0] == 'X'){
+            if(d4){
+                alert('X thang  !');
+            }
+        }
+        else if(mang[0][2] == 'X'){
+            if (f6) {
+                alert('X thang !');
+            }
+        }
+    }
+    // Ham danh co
+function danhCo(){
+    let a = parseInt(prompt('Nhap chi so cot : '));
+    let b = parseInt(prompt('Nhap chi so dong: '));
+    mang[a][b] ='X';
+    space="";
+    for(let i=0;i<3;i++){
+        space += '<br/>';
+        for(let j=0;j<3; j++){
+            space+= mang[i][j]+"&nbsp;&nbsp;";
+        }
+    }
+    invao.innerHTML = space;
+    checkWin('X');
+    console.log(mang);
+}
+
+
+
+</script>
+</body>
+</html>
